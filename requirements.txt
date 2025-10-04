@@ -1,8 +1,8 @@
+tqdm
 numpy
-matplotlib
 opencv-python
-scikit-learn
-pandas
-jupyter
-torch
-torchvision
+Pillow
+scipy
+bezier
+matplotlib
+tensorboardX

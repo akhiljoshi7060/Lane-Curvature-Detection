@@ -1,79 +1,67 @@
-# Lane Curvature Detection with BezierLaneNet
+# BezierLaneNet
+Exploring the use of bezier curves for lane detection —— A baseline model.
 
-A deep learning-based **lane detection and curvature estimation system** that leverages **Bezier curve representations** for accurate and robust lane prediction. The project combines research experiments on lane curvature detection with a full PyTorch-based implementation (BezierLaneNet), providing both Jupyter notebook explorations and deployable training/inference pipelines.
+![](./images/visualization.png)
 
----
 
-## ✨ Features
 
-* Lane detection using **Bezier curve regression**
-* Lane **curvature estimation and metrics** from research notebooks
-* Backbone models: **ResNet, Custom ResNet**
-* Custom **DSD loss function** for better curve fitting
-* Training and inference pipelines included (`train.py`, `inference.py`)
-* Visualization tools for datasets, predictions, and curvature metrics
-* Modular code structure (models, losses, utils)
+演示视频和博客地址：https://mo-vic.github.io/2021/02/21/BezierLaneNet/
 
----
 
-## 📂 Project Structure
 
-* `notebooks/` → Research notebooks for lane curvature detection and experiments
+## Dataset
 
-  * `Bezier_Curve_Synthetic_Dataset_Final.ipynb`
-  * `Bezier_With_Metrics_TuSimple_Dataset.ipynb`
-  * `ENet_With_Metrics.ipynb`
-* `train.py` → Train the BezierLaneNet model on a dataset
-* `inference.py` → Run inference on new images/videos
-* `models/` → Model definitions (ResNet, custom backbones)
-* `losses/` → Custom loss functions (Bezier curve-specific)
-* `utils/` → Dataloader, visualization, and helper utilities
-* `images/visualization.png` → Example output visualization
-* `requirements.txt` → Project dependencies
-* `README.md` → Project documentation
-* `LICENSE` → MIT License
+Download **CULane** dataset [here](https://xingangpan.github.io/projects/CULane.html).
 
----
+## Installation
 
-## ⚙️ Installation
+1. install [PyTorch](https://pytorch.org/);
+2. run the following command:
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/<your-username>/Lane-Curvature-Detection-BezierLaneNet.git
-cd Lane-Curvature-Detection-BezierLaneNet
+```shell
+pip3 install -r requirements.txt
 ```
 
-2. Create a Python environment and install dependencies:
+## Training
 
-```bash
-pip install -r requirements.txt
+Command-line arguments to reproduce the result:
+
+```shell
+python3 train.py --data ./CULane --log_name baseline --pretrained_weight ./weights/resnet18-5c106cde.pth --input_size 820 295 --gpu_ids 0
 ```
 
----
+**Note**: make sure that you've downloaded the weight for ResNet18 pre-trained on [ImageNet](http://image-net.org/).
 
-## 🚀 Usage
+## Inference
 
-### Training (BezierLaneNet)
+Run the following command:
 
-```bash
-python train.py --dataset <path_to_dataset> --epochs 50 --batch_size 16
+```shell
+python3 inference.py --data ./CULane --ckpt [Path to the model checkpoint file] --input_size 820 295 --gpu_ids 0 --save_name "./video/output.avi"
 ```
 
-### Inference (BezierLaneNet)
+## Possible Directions for Improvement
 
-```bash
-python inference.py --image <path_to_image> --weights <path_to_weights>
-```
+#### A. Pay More Attention to the curved lanes:
 
-### Research Experiments
+1. Use Focal loss;
+2. Adaptive weighting according to the curvature;
+3. Data resampling;
+4. ......
 
-Open the Jupyter notebooks under `notebooks/` to explore lane curvature metrics, synthetic dataset experiments, and TuSimple dataset evaluations.
+#### B. Apply Data Augmentation 
 
----
+#### C. Try Using Different Loss Function
 
-## 📊 Dataset
+#### D. Incorporate with Temporal Information:
 
-* Supports lane detection datasets like **TuSimple**
-* Utilities in `utils/dataloader.py` for dataset loading
-* Custom visualization scripts in `utils/visualize_dataset.py`
+1. Training on Video Data;
+2. Use Consistent Loss;
+3. ......
+
+#### E. ......
+
+
+
+**And Let Me Know If You Have Any Progress in These Directions!!!**
+
