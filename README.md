@@ -45,13 +45,6 @@ python train.py --dataset <path_to_dataset> --epochs 50 --batch_size 16
 ```bash
 python inference.py --image <path_to_image> --weights <path_to_weights>
 ```
-
-### Research Experiments
-
-Open the Jupyter notebooks under `notebooks/` to explore lane curvature metrics, synthetic dataset experiments, and TuSimple dataset evaluations.
-
----
-
 ## 📊 Dataset
 
 * Supports lane detection datasets like **TuSimple**
